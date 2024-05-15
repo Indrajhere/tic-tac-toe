@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type Props = {
   initialBoard: null[];
@@ -7,11 +7,20 @@ type Props = {
 
 const useTictactoe = ({ initialBoard, size }: Props) => {
 
+  // console.log('size in main hook: ',size);
+  // console.log('board in main hook: ',initialBoard);
+
   const [board, setBoard] = useState<(string | null)[]>(initialBoard);
   const [isNextX, setIsNextX] = useState<boolean>(true);
-  console.log('board: ', board);
 
+  // console.log('board: ', board);
 
+  useEffect(()=>{
+    setBoard(initialBoard);
+
+  },[initialBoard.length])
+
+ 
   const calculateWinningPatterns = (size: number) => {
 
     const winningPatterns = [];
